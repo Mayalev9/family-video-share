@@ -1,12 +1,13 @@
 import { createReadStream, createWriteStream } from "node:fs";
-import { mkdir, readFile, rename, stat, unlink, writeFile } from "node:fs/promises";
+import { access, mkdir, readFile, rename, stat, unlink, writeFile } from "node:fs/promises";
 import { createServer } from "node:http";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { randomUUID, timingSafeEqual } from "node:crypto";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const publicDir = path.join(__dirname, "public");
+const defaultPublicDir = path.join(__dirname, "public");
+const publicDir = await access(defaultPublicDir).then(() => defaultPublicDir).catch(() => __dirname);
 const uploadsDir = process.env.UPLOADS_DIR || path.join(__dirname, "uploads");
 const dataDir = process.env.DATA_DIR || path.join(__dirname, "data");
 const dataFile = path.join(dataDir, "videos.json");
