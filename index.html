@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>הסרטונים שלנו</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <section class="login-screen" id="loginScreen" hidden>
+      <form class="login-box" id="loginForm">
+        <h1>הסרטונים שלנו</h1>
+        <label>
+          <span>סיסמה</span>
+          <input id="password" type="password" autocomplete="current-password" required />
+        </label>
+        <button type="submit">כניסה</button>
+        <p id="loginStatus"></p>
+      </form>
+    </section>
+
+    <main class="app">
+      <section class="topbar">
+        <div>
+          <p class="eyebrow">שיתוף משפחתי באיכות מקורית</p>
+          <h1>הסרטונים שלנו</h1>
+        </div>
+        <div class="counter" id="counter">0 סרטונים</div>
+      </section>
+
+      <section class="upload-panel">
+        <div class="upload-copy">
+          <h2>העלאת סרטון</h2>
+          <p>הקובץ נשמר כמו שהוא, בלי להקטין ובלי לדחוס.</p>
+        </div>
+
+        <form id="uploadForm" class="upload-form">
+          <label>
+            <span>קטגוריה</span>
+            <select id="category" required>
+              <option value="noa">הסרטונים של נועה</option>
+              <option value="maya">הסרטונים של מאיה</option>
+              <option value="ready">סרטונים מוכנים</option>
+            </select>
+          </label>
+
+          <label class="file-picker">
+            <input id="videoFile" type="file" accept="video/*" required />
+            <span id="fileName">בחירת סרטון</span>
+          </label>
+
+          <button type="submit">העלאה</button>
+        </form>
+
+        <div class="progress-wrap" aria-live="polite">
+          <div class="progress-bar"><span id="progress"></span></div>
+          <p id="status">מוכן להעלאה</p>
+        </div>
+      </section>
+
+      <nav class="tabs" aria-label="סינון סרטונים">
+        <button class="active" data-filter="all">כל הסרטונים</button>
+        <button data-filter="noa">הסרטונים של נועה</button>
+        <button data-filter="maya">הסרטונים של מאיה</button>
+        <button data-filter="ready">סרטונים מוכנים</button>
+      </nav>
+
+      <section id="videos" class="video-grid"></section>
+      <p id="empty" class="empty">עדיין אין סרטונים בקטגוריה הזו.</p>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
